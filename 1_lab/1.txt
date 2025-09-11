@@ -1,0 +1,50 @@
+4.	Проверить корректность выполненных операций с помощью простейших выборок для каждой таблицы с помощью команды SELECT 
+select * from sal;
+select * from ord;
+select * from cust;
+select * from prod;
+
+5.	С помощью команды INSERT добавить в таблицу sal две новых записи о продавцах с номерами 3006 и 3007 со следующими данными:
+insert into sal values (3006, 'Astra', 0.16, 'Innopolis');
+insert into sal values (3007, 'RedSoft', 0.13, 'Moscow');
+
+6.	С помощью команды DELETE удалить из таблицы sal запись о продавце с номером 3007.
+delete from sal where snum=3007;
+
+7.	С помощью команды ALTER добавить в таблицу ord новый столбец даты заказа с именем ord_date и типом данных date.
+ALTER table ord
+ALTER COLUMN ord_date TYPE int;
+
+8.	C помощью команды UPDATE установить дату всех заказов равной 1 сентября 2025 года.
+update ord set ord_date = '2025-09-01';
+
+9.	C помощью команды UPDATE установить дату всех заказов для продукта с номером 1002 равной 31 декабря 2024 года.
+update ord set ord_date = '2025-12-31' where pnum = 1002;
+
+
+----------------------------------------
+
+1.	Вывести все строки из таблицы Заказов, для которых номер продукта равен 1001.
+select * from ord where pnum = 1001;
+
+2.	Вывести записи о продавцах с комиссионными ниже 0.14 со столбцами в следующем порядке: city, name, snum, comm.
+select city, name, snum, comm from sal where comm < 0.14;
+
+3.	Вывести без повторений номера всех продавцов, которые продавали товары покупателям с номерами больше 2004.
+select distinct snum from ord where cnum > 2004;
+
+4.	Вывести данные о всех покупателях с рейтингом меньше или равным 200, если они не находятся в Москве.
+select * from cust where rating <= 200 and city != 'Moscow';
+
+5.	Вывести тремя различными способами все заказы продуктов с номерами 1002, 1003, 1004.
+select * from ord where pnum between 1002 and 1004;
+select * from ord where pnum in (1002, 1003, 1004);
+select * from ord where pnum = 1002 or pnum = 1003 or pnum = 1004;
+
+----------------------------------------
+Защита:
+
+select snum, name from sal where city = 'Moscow' and comm > 0.11;
+Вывести записи о продавцах с комиссионными выше 0.11 и если они находятся в Москве со столбцами в следующем порядке: snum, name.
+0
+select snum, name from sal where not (city != 'Moscow' or comm <= 0.11);
