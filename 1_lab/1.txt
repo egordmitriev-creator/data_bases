@@ -13,7 +13,7 @@ delete from sal where snum=3007;
 
 7.	С помощью команды ALTER добавить в таблицу ord новый столбец даты заказа с именем ord_date и типом данных date.
 ALTER table ord
-ALTER COLUMN ord_date TYPE int;
+ADD COLUMN ord_date date;
 
 8.	C помощью команды UPDATE установить дату всех заказов равной 1 сентября 2025 года.
 update ord set ord_date = '2025-09-01';

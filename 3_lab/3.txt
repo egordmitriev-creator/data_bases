@@ -22,7 +22,7 @@ select count(distinct snum) from ord where pnum between 1001 and 1003;
 
 5.Вывести для каждого продавца его номер и общее количество проданных продуктов, 
 если это количество больше, чем 5.
-select cnum, count(onum) from ord group by cnum having count(onum)>5;
+select snum, sum(amt) from ord group by snum having sum(amt) > 5;
 
 6.Вывести количество заказов для всех уникальных пар покупатель-продавец, 
 между которыми осуществлялись заказы.
