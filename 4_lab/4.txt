@@ -16,8 +16,8 @@ select name from cust where rating > all (select rating from cust where city = '
 
 6. Вывести покупателей, которые заказывали товары из своего города.
 select name from cust where cnum in 
-    (select distinct o.cnum from ord o where exists 
-        (select 1 from prod p where p.pnum = o.pnum and p.city = 
+    (select distinct o.cnum from ord o where pnum in 
+        (select pnum from prod p where p.city = 
             (select city from cust c where c.cnum = o.cnum)));
 
 7. Вывести всю информацию о продуктах с дополнительным столбцом 
@@ -51,3 +51,9 @@ from (select cnum, count(onum) as order_count
     group by cnum
 )
 as order_stats;
+
+Защита:
+Вывести номера заказов, в которых были проданы товары с весом больше 1000.
+select onum from ord where pnum in (select pnum from prod where weight > 1000);
+
+select onum from ord where (select weight from prod where prod.pnum = ord.pnum) > 1000;
