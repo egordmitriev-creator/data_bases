@@ -45,6 +45,8 @@ WHERE
     )
     AND c.rating >= (SELECT MIN(rating) FROM my_schema.cust WHERE city = 'Moscow');
 
+    SELECT * FROM order_analysis;
+
 5.	Сохранить результат как представление и вывести его содержимое.
 
 -- 5
@@ -68,6 +70,8 @@ WHERE
     )
     AND c.rating >= (SELECT MIN(rating) FROM my_schema.cust WHERE city = 'Moscow');
 
+    SELECT * FROM order_analysis_view;
+
 6.	Сохранить результат как материализованное представление и вывести его содержимое.
 
 -- 6
@@ -90,6 +94,8 @@ WHERE
         HAVING COUNT(*) <= 10
     )
     AND c.rating >= (SELECT MIN(rating) FROM my_schema.cust WHERE city = 'Moscow');
+
+SELECT * FROM order_analysis_materialized;
 
 7.	Использовать для запроса блок оператора WITH и вывести результат.
 
